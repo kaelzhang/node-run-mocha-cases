@@ -25,14 +25,13 @@ In your test/test.js:
 
 ```js
 var run = require('run-mocha-cases');
-run('my test case')
-  .run(funtion(n){
-    if (n < 0) {
-      throw new Error('n should not less than 0');
-    }
-    return n + 1;
-  })
-  .go(cases);
+run(funtion(n){
+  if (n < 0) {
+    throw new Error('n should not less than 0');
+  }
+  return n + 1;
+
+}).go(cases);
 ```
 
 ### The `cases`
@@ -93,7 +92,7 @@ var cases = [
   a: 1,
   // The shortcut is `r`
   // It will override the default runner which specified by `.run()` 
-  run: function(n){
+  runner: function(n){
     // Uses the common `this.async()` style to 
     // turn the runner into an asynchronous method.
     var done = this.async();
@@ -146,15 +145,36 @@ var cases = [
   }
 }
 ];
+```
 
+
+## run([description] [, runner])
+## run().description(description).run(runner)
+## run.description(description).run(runner)
+## run(description).runner(runner)
+
+Creates a runner by the specific `description` and the default `runner` function.
+
+- description `string` defines the mocha description for the `describe` method. If not set `run-mocha-cases` will give you one.
+- runner `function()` defines the default runner function. It can be overridden by `cases[i].runner`. If each case has a runner function, you `go(cases)` with the default `runner` being unset. 
+
+#### .go(cases)
+
+Runs all test cases.
+
+- cases `Array.<Object>` The test cases to be run.
 
 #### .describe(describe)
 
 Specified the mocha's `describe` method. If you don't know how mocha works, leave this method alone.
  
+Returns `this`.
+
 #### .it(it)
 
 Specified the mocha's `it` method. If you don't know how mocha works, leave this method alone.
+
+Returns `this`.
 
 ## License
 
