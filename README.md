@@ -37,10 +37,26 @@ run('my test case')
 
 ### The `cases`
 
-We could write really handy test cases in a neet way. 
+We could write test cases in a neet and handy way. 
 
 ```js
-var cases = [{
+var cases = [
+
+// The fist test case is equivalent to:
+// ```js
+// it('plus', function(){
+//   function runner(n){
+//     if (n < 0) {
+//       throw new Error('n should not less than 0');
+//     }
+//     return n + 1;
+//   }
+//
+//   var result = runner(1);
+//   expect(result).to.equal(2);
+// });
+// ```
+{
   description: 'plus',
   args: 1,
   expect: 2
@@ -131,10 +147,14 @@ var cases = [{
 }
 ];
 
-### 
 
- .describe(describe)
-  .it(it)
+#### .describe(describe)
+
+Specified the mocha's `describe` method. If you don't know how mocha works, leave this method alone.
+ 
+#### .it(it)
+
+Specified the mocha's `it` method. If you don't know how mocha works, leave this method alone.
 
 ## License
 
