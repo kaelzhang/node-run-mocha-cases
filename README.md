@@ -31,7 +31,7 @@ run(funtion(n){
   }
   return n + 1;
 
-}).go(cases);
+}).start(cases);
 ```
 
 ### The `cases`
@@ -41,7 +41,7 @@ We could write test cases in a neet and handy way.
 ```js
 var cases = [
 
-  // The fist test case is equivalent to:
+  // The first test case is equivalent to:
   // ```js
   // it('plus', function(){
   //   function runner(n){
@@ -62,7 +62,7 @@ var cases = [
   },
 
   {
-    // Short cut
+    // Short cut for `description`
     d: 'shortcut',
     // Shortcut for `args`
     a: [1],
@@ -148,7 +148,7 @@ var cases = [
   },
 
   {
-    d: 'handle multiple result by using `expect` of function type',
+    d: 'handle multiple results by using `expect` of function type',
     a: 1,
     r: function(n){
       var done = this.async();
@@ -173,9 +173,22 @@ var cases = [
 Creates a runner by the specific `description` and the default `runner` function.
 
 - description `string=` (optional) defines the mocha description for the `describe` method. If not set `run-mocha-cases` will give you one.
-- runner `function()=` (optional) defines the default runner function. It can be overridden by `cases[i].runner`. If each case has a runner function, you `go(cases)` with the default `runner` being unset. 
+- runner `function()=` (optional) defines the default runner function. It can be overridden by `cases[i].runner`. If each case has a runner function, you `start(cases)` with the default `runner` being unset. 
 
-#### .go(cases)
+##### The simplest situation:
+
+```js
+run.start(cases);
+```
+
+##### Some other usages:
+
+```js
+run(runner).start(cases);
+
+```
+
+#### .start(cases)
 
 Runs all test cases.
 
