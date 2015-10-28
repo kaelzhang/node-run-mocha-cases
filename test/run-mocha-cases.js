@@ -3,25 +3,19 @@
 var expect = require('chai').expect;
 var run = require('../');
 
-var cases = [
+function runner (n){
+  if (n < 0) {
+    throw new Error('n should not less than 0');
+  }
+  return n + 1;
 
-  // The first test case is equivalent to:
-  // ```js
-  // it('plus', function(){
-  //   function runner(n){
-  //     if (n < 0) {
-  //       throw new Error('n should not less than 0');
-  //     }
-  //     return n + 1;
-  //   }
-  //
-  //   var result = runner(1);
-  //   expect(result).to.equal(2);
-  // });
-  // ```
+}
+
+var cases = [
   {
     description: 'plus',
     args: 1,
+    runner: runner,
     expect: 2
   },
 
@@ -29,26 +23,22 @@ var cases = [
     // Short cut for `description`
     d: 'shortcut',
     // Shortcut for `args`
-    a: [1],
+    a: 1,
+    r: runner,
     // Shortcut for `expect`
     // `expect` could be a function,
     // and you could use any assertion method inside it.
     e: function(n){
-      require('chai').expect(n).to.equal();
+      require('chai').expect(n).to.equal(2);
     }
-  },
-
-  {
-    d: 'throw errors',
-    a: -1,
-    // or `err`
-    error: true
   },
 
   // This test case will fail if not skipped
   {
     d: 'if `error` is not set to `true`, the test case will fail',
-    a: -1
+    r: runner,
+    a: -1,
+    error: true
   },
 
   {
@@ -116,7 +106,7 @@ var cases = [
     a: 1,
     r: function(n){
       var done = this.async();
-      done(err, n + 1, n + 2);
+      done(null, n + 1, n + 2);
     },
     e: function(err, first, second){
       var expect = require('chai').expect;

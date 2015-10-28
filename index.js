@@ -81,6 +81,13 @@ Run.prototype.start = function (cases) {
       var args = case_.args(c);
       var runner = this._get_runner(c);
 
+      if (!runner) {
+        throw new Error(
+          'No runner found. '
+          + 'It could be defined by `run.runner(runner)` or `{runner: runner}` in cases.'
+        );
+      }
+
       // If the runner only has more than one parameter,
       // the `c.args` will be treated as arguments instead of the first argument
       if (runner.length === 1) {
@@ -94,13 +101,9 @@ Run.prototype.start = function (cases) {
 
       function callback () {
         done();
-        if (util.isFunction(exp)) {
-          return exp.apply(null, arguments);
-        }
-
-        var arg_length = arguments.length;
         var args = make_array(arguments);
-
+        var arg_length = arguments.length;
+        
         if (!is_async) {
           // if is an sync method, the last argument is the real value,
           // see `wrap-as-async`
@@ -114,7 +117,12 @@ Run.prototype.start = function (cases) {
         // we only test the values inside `exp`
         } else {
           exp = make_array(exp);
-        }        
+        }
+
+        if (util.isFunction(exp)) {
+          exp.apply(null, args);
+          return;
+        }
 
         if (util.isArray(exp)) {
           exp.forEach(function (exp, i) {
@@ -133,6 +141,7 @@ Run.prototype.start = function (cases) {
         if (!error) {
           throw e;
         }
+        done();
       }
 
     }.bind(this));

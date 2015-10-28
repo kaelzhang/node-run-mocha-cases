@@ -25,7 +25,7 @@ In your test/test.js:
 
 ```js
 var run = require('run-mocha-cases');
-run(funtion(n){
+run(function(n){
   if (n < 0) {
     throw new Error('n should not less than 0');
   }
@@ -65,7 +65,7 @@ var cases = [
     // Short cut for `description`
     d: 'shortcut',
     // Shortcut for `args`
-    a: [1],
+    a: 1,
     // Shortcut for `expect`
     // `expect` could be a function,
     // and you could use any assertion method inside it.
@@ -152,7 +152,7 @@ var cases = [
     a: 1,
     r: function(n){
       var done = this.async();
-      done(err, n + 1, n + 2);
+      done(null, n + 1, n + 2);
     },
     e: function(err, first, second){
       var expect = require('chai').expect;
