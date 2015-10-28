@@ -25,13 +25,15 @@ In your test/test.js:
 
 ```js
 var run = require('run-mocha-cases');
-run(function(n){
+run(runner).start(cases);
+
+// Default runner which could be override by `case.runner`.
+function runner (n){
   if (n < 0) {
     throw new Error('n should not less than 0');
   }
   return n + 1;
-
-}).start(cases);
+}
 ```
 
 ### The `cases`
