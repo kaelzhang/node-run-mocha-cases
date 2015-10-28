@@ -13,7 +13,7 @@ var case_ = require('./lib/case');
 
 
 function run (description, runner) {
-  if (typeof description === 'function') {
+  if (util.isFunction(description)) {
     runner = description;
     description = null;
   }
