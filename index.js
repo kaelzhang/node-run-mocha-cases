@@ -32,9 +32,7 @@ function run (description, runner) {
 }
 
 
-function Run () {
-  this._guid = 1;
-}
+function Run () {}
 
 
 Run.prototype.description = function(description) {
@@ -43,7 +41,7 @@ Run.prototype.description = function(description) {
 };
 
 Run.prototype._get_description = function() {
-  return this._description || 'Test Group: ' + this._guid ++; 
+  return this._description; 
 };
 
 
@@ -81,8 +79,6 @@ Run.prototype._get_runner = function(c) {
 
 
 Run.prototype.start = function (cases) {
-  var _describe = this._get_describe();
-
   function run_case (c) {
     this._get_it(c)(case_.title(c), function (done) {
       var args = case_.args(c);
@@ -154,7 +150,14 @@ Run.prototype.start = function (cases) {
     }.bind(this));
   }
 
-  cases.forEach(run_case, this);
+  var description = this._get_description();
+  if (!description) {
+    return cases.forEach(run_case, this);
+  }
+
+  this._get_describe()(description, function(){
+    cases.forEach(run_case, this);
+  }.bind(this));
 };
 
 

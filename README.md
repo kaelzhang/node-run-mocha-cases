@@ -174,7 +174,7 @@ var cases = [
 
 Creates a runner by the specific `description` and the default `runner` function.
 
-- description `string=` (optional) defines the mocha description for the `describe` method. If not set `run-mocha-cases` will give you one.
+- description `string=` (optional) defines the mocha description for the `describe` method. If not set `run-mocha-cases` will not invode `describe` method of mocha.
 - runner `function()=` (optional) defines the default runner function. It can be overridden by `cases[i].runner`. If each case has a runner function, you `start(cases)` with the default `runner` being unset. 
 
 ##### The simplest situation:
