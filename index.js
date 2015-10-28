@@ -12,6 +12,13 @@ var make_array = require('make-array');
 var case_ = require('./lib/case');
 
 
+if (!util.isFunction) {
+  util.isFunction = function (fn) {
+    return typeof fn === 'function';
+  }
+}
+
+
 function run (description, runner) {
   if (util.isFunction(description)) {
     runner = description;
