@@ -1,7 +1,7 @@
 {
   "name": "run-mocha-cases",
   "version": "1.0.0",
-  "description": "run-mocha-cases",
+  "description": "Run an array list of similar mocha cases, making your test cases more readable and maintainable.",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec ./test/*.js"
@@ -11,7 +11,11 @@
     "url": "git://github.com/kaelzhang/node-run-mocha-cases.git"
   },
   "keywords": [
-    "run-mocha-cases"
+    "run-mocha-cases",
+    "mocha",
+    "runner",
+    "unit",
+    "test"
   ],
   "engines": {
     "node": ">=0.10.0"
@@ -24,5 +28,11 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*"
+  },
+  "dependencies": {
+    "chai": "^3.4.0",
+    "make-array": "^0.1.2",
+    "mix2": "^1.0.1",
+    "wrap-as-async": "^1.0.5"
   }
 }
