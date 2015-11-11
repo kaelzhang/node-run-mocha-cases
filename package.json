@@ -1,6 +1,6 @@
 {
   "name": "run-mocha-cases",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Run an array list of similar mocha cases, making your test cases more readable and maintainable.",
   "main": "index.js",
   "scripts": {

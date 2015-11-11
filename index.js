@@ -163,5 +163,5 @@ Run.prototype.start = function (cases) {
 
 var instance = new run.Run();
 
-// So, user can use `run.go()` directly
+// So, user can use `run.start()` directly
 mix(run, instance);
