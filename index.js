@@ -106,25 +106,29 @@ Run.prototype.start = function (cases) {
         done();
         var args = make_array(arguments);
         var arg_length = arguments.length;
-        
+
         if (!is_async) {
           // if is an sync method, the last argument is the real value,
           // see `wrap-as-async`
-          args = [args.pop()]
-        
+          args = [args.pop()];
+          arg_length --;
+        }
+
+        if (util.isFunction(exp)) {
+          exp.apply(null, args);
+          return;
+        }
+
         // If there is only one parameters in `done`
-        } else if (args === 1) {
+        // and exp is an array, we will treat the array as the
+        // expect result instead of an array of results
+        if (arg_length === 1) {
           exp = [exp];
 
         // If the length of expect values is less than arg_length,
         // we only test the values inside `exp`
         } else {
           exp = make_array(exp);
-        }
-
-        if (util.isFunction(exp)) {
-          exp.apply(null, args);
-          return;
         }
 
         if (util.isArray(exp)) {

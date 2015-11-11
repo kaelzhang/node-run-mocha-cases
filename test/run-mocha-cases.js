@@ -42,6 +42,15 @@ var cases = [
   },
 
   {
+    d: 'sync method and single expected value',
+    r: function (n) {
+      return n
+    },
+    a: 1,
+    e: 1
+  },
+
+  {
     d: 'async test case',
     a: 1,
     // The shortcut is `r`
