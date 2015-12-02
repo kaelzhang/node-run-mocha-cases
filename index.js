@@ -74,7 +74,7 @@ Run.prototype.runner = function (runner) {
 };
 
 Run.prototype._get_runner = function(c) {
-  return this._runner || c.runner || c.r;
+  return c.runner || c.r || this._runner;
 };
 
 

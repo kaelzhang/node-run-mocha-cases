@@ -126,4 +126,7 @@ var cases = [
   }
 ];
 
-run.start(cases);
+run.runner(function () {
+  return 'actually, the default runner will ruin the world'
+
+}).start(cases);
