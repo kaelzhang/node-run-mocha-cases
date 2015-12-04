@@ -16,7 +16,7 @@ Run an array list of similar mocha cases, making your test cases more readable a
 ## Install
 
 ```sh
-$ npm install run-mocha-cases --save
+$ npm install run-mocha-cases --save-dev
 ```
 
 ## Usage
