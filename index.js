@@ -103,7 +103,6 @@ Run.prototype.start = function (cases) {
       var exp = case_.expect(c);
 
       function callback () {
-        done();
         var args = make_array(arguments);
         var arg_length = arguments.length;
 
@@ -116,7 +115,7 @@ Run.prototype.start = function (cases) {
 
         if (util.isFunction(exp)) {
           exp.apply(null, args);
-          return;
+          return done();
         }
 
         // If there is only one parameters in `done`
@@ -136,6 +135,8 @@ Run.prototype.start = function (cases) {
             case_.equal(args[i], exp);
           });
         }
+
+        done();
       }
 
       args.push(callback);
