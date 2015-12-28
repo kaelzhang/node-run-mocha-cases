@@ -126,7 +126,9 @@ var cases = [
   }
 ];
 
-run.runner(function () {
-  return 'actually, the default runner will ruin the world'
-
-}).start(cases);
+run
+  .description('run-mocha-cases')
+  .runner(function () {
+    return 'actually, the default runner will ruin the world'
+  })
+  .start(cases);
